@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <title>TODO LIST</title>
+        <link rel="stylesheet" href="app.css">
+        <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js"></script>
+        <script
+                src="https://code.jquery.com/jquery-3.4.1.min.js"
+                integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+                crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.4.0/backbone-min.js"></script>
+    </head>
+    <body>
+        <main class="main">
+            <h1 class="title">TODO LIST</h1>
+            <form class="form js-form"></form>
+
+            <div class="search-area">
+                <i class="fas fa-search"></i>
+                <input type="text" class="search-input js-search">
+            </div>
+            <ul class="list js-todo-list"></ul>
+
+            <script type="text/template" id="template-item">
+                <li class="list-item js-todo-list-item <% if(isDone){ %>list-item-done<% } %>">
+                    <i class="far <% if(isDone){ %>fa-check-square<% }else{ %>fa-square<% } %> icon-check js-toggle-done"></i>
+                    <% if(!editMode){ %>
+                        <span class="list-item-text js-click-item-text"><%= text %></span>
+                    <% }else{ %>
+                        <input type="text" class="list-item-edit js-list-item-edit" value="<%= text %>">
+                    <% } %>
+                    <i class="far fa-trash-alt icon-trash js-click-trash"></i>
+                </li>
+            </script>
+            <script type="text/template" id="template-form">
+                <div class="input-area">
+                    <input type="text" class="input-text js-get-val" placeholder="ここにTODOを書く">
+                    <% if(hasErr) %>
+                        <span class="error js-toggle-error"><%= errMsg %></span>
+                    <% } %>
+                </div>
+                <button class="btn js-add-todo">追加</button>
+            </script>
+        </main>
+        <script src="app.js"></script>
+    </body>
+</html>
