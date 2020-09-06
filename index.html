@@ -18,14 +18,12 @@
             <h1 class="title">TODO LIST</h1>
             <form class="form js-form"></form>
 
-            <div class="search-area">
-                <i class="fas fa-search"></i>
-                <input type="text" class="search-input js-search">
-            </div>
-            <ul class="list js-todo-list"></ul>
+            <div class="search-area js-search"></div>
 
+            <ul class="list js-todo-list"></ul>
+            <!--todoアイテム部分-->
             <script type="text/template" id="template-item">
-                <li class="list-item js-todo-list-item <% if(isDone){ %>list-item-done<% } %>">
+                <li class="list-item js-todo-list-item <% if(isDone){ %>list-item-done<% } %>" style="<% if(!show){%> display: none; <%}%>">
                     <i class="far <% if(isDone){ %>fa-check-square<% }else{ %>fa-square<% } %> icon-check js-toggle-done"></i>
                     <% if(!editMode){ %>
                         <span class="list-item-text js-click-item-text"><%= text %></span>
@@ -35,6 +33,7 @@
                     <i class="far fa-trash-alt icon-trash js-click-trash"></i>
                 </li>
             </script>
+            <!--入力部分-->
             <script type="text/template" id="template-form">
                 <div class="input-area">
                     <input type="text" class="input-text js-get-val" placeholder="ここにTODOを書く">
@@ -43,6 +42,11 @@
                     <% } %>
                 </div>
                 <button class="btn js-add-todo">追加</button>
+            </script>
+            <!--検索部分-->
+            <script type="text/template" id="template-search">
+                <i class="fas fa-search"></i>
+                <input type="text" class="search-input js-get-search">
             </script>
         </main>
         <script src="app.js"></script>
