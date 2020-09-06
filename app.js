@@ -1,8 +1,5 @@
-// let Backbone = require('../node_modules/backbone/backbone');
-// let $ = require('../node_modules/jquery/dist/jquery');
-// let _ = require('../node_modules/underscore/underscore');
-
 //model
+//todoアイテム部分
 let ItemModel = Backbone.Model.extend({
     defaults:{
         text: '',
@@ -11,7 +8,7 @@ let ItemModel = Backbone.Model.extend({
         show: true,
     }
 });
-
+//form部分
 let Form = Backbone.Model.extend({
     defaults: {
         val: '',
@@ -21,6 +18,7 @@ let Form = Backbone.Model.extend({
 
 let form = new Form();
 
+//検索部分
 let Search = Backbone.Model.extend({
     defaults: {
         val: '',
@@ -30,6 +28,7 @@ let Search = Backbone.Model.extend({
 let search = new Search();
 
 //collection
+//todoアイテムをまとめるtodoリスト
 let List = Backbone.Collection.extend({
     model: ItemModel,
 });
@@ -38,6 +37,7 @@ let item2 = new ItemModel({text: 'sample todo2'});
 let list = new List([item1, item2]);
 
 //view
+//todoアイテムを表示する部分
 let ItemView = Backbone.View.extend({
     template: _.template($('#template-item').html()),
     events: {
@@ -79,7 +79,7 @@ let ItemView = Backbone.View.extend({
         return this;
     }
 });
-
+//todoアイテムを表示するリストの表示部分
 let ListView = Backbone.View.extend({
     el: $('.js-todo-list'),
     collection: list,
@@ -112,6 +112,7 @@ let ListView = Backbone.View.extend({
 
 let listView = new ListView({collection: list});
 
+//todoを追加するフォームを表示する部分
 let FormView = Backbone.View.extend({
     el: $('.js-form'),
     template: _.template($('#template-form').html()),
@@ -151,6 +152,7 @@ let FormView = Backbone.View.extend({
 });
 new FormView();
 
+//todoを検索する表示部分
 let SearchView = Backbone.View.extend({
     el: $('.js-search'),
     template: _.template($('#template-search').html()),
