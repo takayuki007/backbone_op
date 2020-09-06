@@ -15,7 +15,6 @@ let Form = Backbone.Model.extend({
     defaults: {
         val: '',
         hasErr: false,
-        errMsg: '入力が空です。'
     }
 });
 
@@ -46,7 +45,7 @@ let ItemView = Backbone.View.extend({
     },
     toggleDone: function ()
     {
-        this.model.set({Done: !this.model.get('Done')})
+        this.model.set({isDone: !this.model.get('isDone')})
     },
     remove: function ()
     {
@@ -121,7 +120,18 @@ let FormView = Backbone.View.extend({
     {
         e.preventDefault();
         this.model.set({val: $('.js-get-val').val()});
-        listView.addItem(this.model.get('val'));
+
+        if(!this.model.get('val')){
+            this.model.set({
+                hasErr: true,
+            });
+        }else{
+            this.model.set({
+                hasErr: false,
+            });
+
+            listView.addItem(this.model.get('val'));
+        }
     },
     render: function ()
     {

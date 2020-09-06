@@ -38,8 +38,8 @@
             <script type="text/template" id="template-form">
                 <div class="input-area">
                     <input type="text" class="input-text js-get-val" placeholder="ここにTODOを書く">
-                    <% if(hasErr) %>
-                        <span class="error js-toggle-error"><%= errMsg %></span>
+                    <% if(hasErr){ %>
+                        <span class="error js-toggle-error">入力欄が空です。</span>
                     <% } %>
                 </div>
                 <button class="btn js-add-todo">追加</button>
